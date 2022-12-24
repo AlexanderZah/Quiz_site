@@ -1,0 +1,17 @@
+{% extends 'tests/base.html' %}
+
+
+{% block content %}
+
+{% if error %}
+<h1>{{ error }}</h1>
+{% endif %}
+
+<form method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>Зарегистрироваться</button>
+</form>
+
+{% endblock content %}
+

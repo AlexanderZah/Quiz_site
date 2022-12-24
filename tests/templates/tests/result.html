@@ -1,0 +1,17 @@
+{% extends 'tests/base.html' %}
+
+
+{% block content %}
+
+<h1>Ваш результат:</h1>
+{% if count_ans %}
+    <h2>{{ count_ans }} правильных ответа</h2>
+{% else %}
+<h2>Неудача</h2>
+{% endif %}
+{{ user.username }}
+{{ test }}
+
+
+
+{% endblock content %}

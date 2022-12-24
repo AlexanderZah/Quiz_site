@@ -1,0 +1,11 @@
+{% extends 'tests/base.html' %}
+{% block content %}
+
+
+{% for test in category.tests_set.all %}
+<a href='{% url 'test' test.id %}'>{{test}}</a><br>
+{% endfor %}
+
+{% endblock content %}
+
+
