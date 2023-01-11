@@ -1,17 +1,17 @@
 {% extends 'tests/base.html' %}
 
 {% block content %}
-
+<h1>{{ test }}<h1>
 <form action='{% url 'result' test_id %}' method='POST'>
     {% csrf_token %}
-    <h1>{{test}}</h1>
-    {% for q in test.questions.all %}
-        <h3>{{ q }}</h3>
-        {% for ans in q.get_answers %}
-            <input type='checkbox' value="{{ ans.id }}" name='{{ q.id }}' >{{ ans }}</input><br>
+    
         
+        {% for question in questions %}
+            <p>{{ question }}</p>
+            {% for ans in question.get_answers %}
+                <input type='radio' name='{{ question.id }}' value='{{ ans.id }}'> {{ ans }}</input><br>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
     <button type='submit'>Submit</button>
 </form>
 

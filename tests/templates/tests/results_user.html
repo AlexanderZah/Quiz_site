@@ -1,0 +1,16 @@
+{% extends 'tests/base.html' %}
+{% block content %}
+
+<h1>Hello, {{user.username}}</h1>
+<h2>Your results:</h2>
+
+{% for result in results %}
+<div>
+    <h3>Тест: {{ result.test }}</h3>
+    <p>Результат: {{ result.result }} праивильный(ых) ответ(ов)</p>
+    <a href='{% url 'test' result.test.id %}'>Решить заново</a>
+    <br>
+</div>
+{% endfor %}
+
+{% endblock content %}

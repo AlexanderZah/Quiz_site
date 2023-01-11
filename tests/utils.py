@@ -1,5 +1,5 @@
 from .models import *
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class DataMixin:
 
@@ -10,3 +10,7 @@ class DataMixin:
         context['categories'] = cats
         context['tests'] = tests
         return context
+
+class MyLoginRequiredMixin(LoginRequiredMixin):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'

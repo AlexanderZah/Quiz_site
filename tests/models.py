@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 class Question(models.Model):
     text = models.CharField(max_length=250)
     num_right = models.IntegerField(verbose_name='total answers')
+    test = models.ForeignKey('Tests', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.text
@@ -48,10 +49,13 @@ class CategoryTest(models.Model):
 class Tests(models.Model):
     category_test = models.ForeignKey(CategoryTest , verbose_name='category_test', on_delete=models.CASCADE)
     title = models.CharField(max_length=250, verbose_name='test')
-    questions = models.ManyToManyField(Question)
+    
     
     def __str__(self):
         return self.title
+
+    def get_questions(self):
+        return Question.objects.filter(test=self)
 
     class Meta:
         verbose_name = 'Test'
@@ -65,3 +69,5 @@ class ResultTest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     test = models.ForeignKey(Tests, on_delete=models.CASCADE)
     result = models.CharField(max_length=250, verbose_name='result')
+
+    
